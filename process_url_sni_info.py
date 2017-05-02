@@ -33,8 +33,8 @@ def process_url(url):
     """
     Process the certificate extraction and checks if any of the SNI criteria is met.
     """
-    default_cert_cmd = "echo | openssl s_client -connect {}:443 2>&1 | sed -n '/BEGIN CERTIFICATE/,/END CERTIFICATE/p'".format(url)
-    sni_cert_cmd = "echo | openssl s_client -connect {}:443 -servername {} 2>&1 | sed -n '/BEGIN CERTIFICATE/,/END CERTIFICATE/p'".format(url, url)
+    default_cert_cmd = "echo | openssl s_client -connect www.{}:443 2>&1 | sed -n '/BEGIN CERTIFICATE/,/END CERTIFICATE/p'".format(url)
+    sni_cert_cmd = "echo | openssl s_client -connect www.{}:443 -servername {} 2>&1 | sed -n '/BEGIN CERTIFICATE/,/END CERTIFICATE/p'".format(url, url)
 
     default_cert_str = get_cmd_output(default_cert_cmd)
     sni_cert_str = get_cmd_output(sni_cert_cmd)
