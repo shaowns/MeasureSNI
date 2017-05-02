@@ -32,9 +32,11 @@ def get_cmd_output(command):
 def process_url(url):
     """
     Process the certificate extraction and checks if any of the SNI criteria is met.
+    Requires coreutils on mac OSX $brew install coreutils.
+    If on Linux just use timeout instead of gtimeout.
     """
-    default_cert_cmd = "echo | openssl s_client -connect www.{}:443 2>&1 | sed -n '/BEGIN CERTIFICATE/,/END CERTIFICATE/p'".format(url)
-    sni_cert_cmd = "echo | openssl s_client -connect www.{}:443 -servername {} 2>&1 | sed -n '/BEGIN CERTIFICATE/,/END CERTIFICATE/p'".format(url, url)
+    default_cert_cmd = "gtimeout 10 sh default.sh {}".format(url)
+    sni_cert_cmd = "gtimeout 10 sh sni.sh {}".format(url)
 
     default_cert_str = get_cmd_output(default_cert_cmd)
     sni_cert_str = get_cmd_output(sni_cert_cmd)
