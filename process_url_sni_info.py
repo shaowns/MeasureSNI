@@ -94,7 +94,7 @@ def get_url_iterator(filename, sidx):
             yield row
 
 
-def do_stuff(filename, sidx=0):
+def do_stuff(filename, logger, sidx=0):
     """
     Start running the url processing starting at given row index.
     """
@@ -128,7 +128,7 @@ def main():
     sidx = int(args.i)
 
     start = timer()
-    count = do_stuff(filename, sidx)
+    count = do_stuff(filename, logger, sidx)
     end = timer()
     elapsed = end - start
 
