@@ -116,7 +116,7 @@ def main():
     """
     ap = ArgumentParser(description='Use the script to pull the certificate data of the urls in the csv file.')
     ap.add_argument('-f', '-file', help='CSV file containing urls at column 1, rank at column 0', required=True)
-    ap.add_argument('-i', '-idx', help='Starting index of the csv file', required=False, default=0)
+    ap.add_argument('-s', '-skip', help='No. of ranks to skip before starting to process', required=False, default=0)
 
     # Reload the dac for changes.
     imp.reload(md)
